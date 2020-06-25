@@ -24,7 +24,7 @@
                 <option v-for="(list, index) in recipientsLists" :key="index"  :value="list.id">{{ list.name }}</option>
             </b-select>
         </b-field>
-        <b-button type="is-info">Create Campaign</b-button>
+        <b-button @click="submit" type="is-info">Create Campaign</b-button>
     </form>
 </template>
 
@@ -52,6 +52,11 @@ export default {
                     name: "Liste numero 3"
                 }
             ]
+        }
+    },
+    methods: {
+        submit: function() {
+            this.$emit("submit", {...this.campaign})
         }
     }
 }
