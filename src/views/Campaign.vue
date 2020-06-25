@@ -87,9 +87,14 @@ export default {
             }
         },
         deleteCampaign: async function() {
+            this.isComponentModalActive = false
             try {
                 const response = await axios.delete("http://localhost:8080/campaigns/"+this.id)
                 response.status == 200 ? this.success("Campaign deleted!") : this.error()
+
+                setTimeout(() => {
+                    this.$router.push("/")
+                }, 1000);
             } catch (err) {
                 console.error(err)
                 this.error("Couldn't delete.")
