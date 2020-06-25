@@ -9,24 +9,23 @@
 </template>
 
 <script>
+import axios from "axios"
 import UserTable from "@/components/UserTable";
 import AddUserForm from "@/components/AddUserForm";
 
 export default {
     data() {
         return {
-            users: [
-                    { 'id': 1, 'name': 'Jesse', 'email': 'jesse@gmail.com', 'admin': false},
-                    { 'id': 2, 'name': 'John', 'email': 'john@gmail.com', 'admin': false},
-                    { 'id': 3, 'name': 'Tina', 'email': 'tina@gmail.com', 'admin': true},
-                    { 'id': 4, 'name': 'Clarence', 'email': 'clarence@gmail.com', 'admin': false},
-                    { 'id': 5, 'name': 'Anne', 'email': 'anne@gmail.com', 'admin': false}
-            ]
+            users: []
         }
     },
     components: {
         UserTable,
         AddUserForm
+    },
+    async mounted() {
+        const response = await axios.get("http://localhost:8080/organisms/10/users")
+        this.users = response.data
     }
 }
 </script>

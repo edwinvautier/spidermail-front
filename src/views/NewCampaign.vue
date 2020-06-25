@@ -17,6 +17,9 @@ export default {
         try {
             const response = await axios.post("http://localhost:8080/campaigns", campaign)
             response.status == 201 ? this.success("Created campaign!") : this.error("Couldn't create campaign")
+            setTimeout(() => {
+                this.$router.push("/")
+            }, 1000);
         } catch (err) {
             console.error(err)
             this.error("Couldn't create campaign")

@@ -24,6 +24,16 @@
                 <option v-for="(list, index) in recipientsLists" :key="index"  :value="list.id">{{ list.name }}</option>
             </b-select>
         </b-field>
+        <b-field label="Sending date">
+            <b-datetimepicker
+                rounded
+                placeholder="Click to select..."
+                icon="calendar-today"
+                :datepicker="{ showWeekNumber }"
+                :timepicker="{ enableSeconds, hourFormat: format }"
+                horizontal-time-picker>
+            </b-datetimepicker>
+        </b-field>
         <div class="buttons">
         <b-button @click="editCampaign" type="is-info">Save changes</b-button>
         <b-button @click="isComponentModalActive = true" type="is-danger">Delete</b-button>

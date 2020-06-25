@@ -3,13 +3,13 @@
         <b-table hoverable :data="users">
             <template slot-scope="props">
                 <b-table-column field="id" label="ID" width="40" numeric>
-                    {{ props.row.id }}
+                    {{ props.row.ID }}
                 </b-table-column>
                 <b-table-column field="email" label="Mail">
-                    {{ props.row.email }}
+                    {{ props.row.Email }}
                 </b-table-column>
                 <b-table-column field="admin" label="Admin">
-                    <b-checkbox v-model="props.row.admin">
+                    <b-checkbox v-model="props.row.Admin">
                     </b-checkbox>
                 </b-table-column>   
                 <b-table-column field="settings" label="Settings">
