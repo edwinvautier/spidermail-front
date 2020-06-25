@@ -1,17 +1,17 @@
 <template>
-    <div class="box">
+    <router-link :to="'/campaigns/' + campaign.ID" class="box">
     <article class="media">
         <div class="media-content">
         <div class="content">
             <p>
-                <strong>{{ campaign.name }}</strong> <small>{{ campaign.authorName}}</small>
+                <strong>{{ campaign.Name }}</strong> <small>{{ campaign.authorName}}</small>
                 <br>
-                {{ campaign.subject }}
+                {{ campaign.Subject }}
             </p>
         </div>
         </div>
     </article>
-    </div>
+    </router-link>
 </template>
 
 <script>
