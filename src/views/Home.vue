@@ -13,28 +13,20 @@
 
 <script>
 import CampaignBox from "@/components/CampaignBox.vue";
+import axios from "axios";
+
 export default {
   name: "Campaigns",
   data() {
     return {
-      campaigns: [
-        {
-          name: "Test 1",
-          authorName: "Johnnatan",
-          subject: "Qu'est ce qui est jaune et qui attend ?"
-        },
-        {
-          name: "Test 2",
-          authorName: "Abraham",
-          subject: "J'ai aboli l'esclavage!"
-        },
-        {
-          name: "Test 3",
-          authorName: "Ahmad",
-          subject: "Ceci est un sujet de mail particulièrement intéressant."
-        }
-      ]
+      campaigns: []
     }
+  },
+  async mounted() {
+    
+    const response = await axios.get('http://localhost:8080/campaigns')
+
+    this.campaigns = response.data
   },
   components: {
     CampaignBox

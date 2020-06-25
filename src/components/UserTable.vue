@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-table hoverable="true" :data="users" :columns="columns">
+        <b-table hoverable :data="users">
             <template slot-scope="props">
                 <b-table-column field="id" label="ID" width="40" numeric>
                     {{ props.row.id }}
@@ -13,7 +13,7 @@
                     </b-checkbox>
                 </b-table-column>   
                 <b-table-column field="settings" label="Settings">
-                        <b-button type="is-danger">Remove user</b-button>
+                    <b-button type="is-danger">Remove user</b-button>
                 </b-table-column>   
             </template>
         </b-table>
