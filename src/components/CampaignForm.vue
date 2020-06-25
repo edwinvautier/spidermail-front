@@ -24,6 +24,14 @@
                 <option v-for="(list, index) in recipientsLists" :key="index"  :value="list.id">{{ list.name }}</option>
             </b-select>
         </b-field>
+        <b-field label="Sending date">
+            <b-datepicker
+                v-model="campaign.dateStart"
+                placeholder="Click to select..."
+                icon="calendar-today"
+                trap-focus>
+            </b-datepicker>
+        </b-field>
         <b-button @click="submit" type="is-info">Create Campaign</b-button>
     </form>
 </template>
@@ -33,6 +41,7 @@ export default {
     data() {
         return {
             campaign: {
+                dateStart: null,
                 name: "",
                 subject: "",
                 content: "",

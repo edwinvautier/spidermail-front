@@ -5,6 +5,7 @@ import Login from "../views/Login.vue";
 import Admin from "../views/Admin.vue";
 import NewCampaign from "../views/NewCampaign.vue";
 import Campaign from "../views/Campaign.vue";
+import Registrate from "../views/Registrate.vue";
 
 Vue.use(VueRouter);
 
@@ -18,6 +19,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login
+  },
+  {
+    path: "/registrate",
+    name: "Registrate",
+    component: Registrate
   },
   {
     path: "/admin",
