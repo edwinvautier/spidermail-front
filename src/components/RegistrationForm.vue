@@ -1,8 +1,5 @@
 <template>
     <div class="userform">
-        <b-field label="Name">
-            <b-input v-model="name"></b-input>
-        </b-field>
         <b-field label="Email"
         :type="isInvalidMail?'is-danger':''"
         :message="isInvalidMail?'This email is invalid':''">
@@ -11,6 +8,9 @@
                 v-model="email"
                 maxlength="30">
             </b-input>
+        </b-field>
+        <b-field label="Password">
+            <b-input type="password" v-model="password"></b-input>
         </b-field>
         <b-field>
             <b-button type="is-info">Registrate</b-button>
@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             isInvalidMail: false,
-            name: "",
+            password: "",
             email: "",
             admin: false,
         }

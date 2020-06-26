@@ -15,7 +15,11 @@ export default {
     methods: {
         createCampaign: async function(campaign) {
         try {
-            const response = await axios.post("http://localhost:8080/campaigns", campaign)
+            const response = await axios.post("http://localhost:8080/campaigns", campaign,{
+                headers: {
+                    "Authorization": localStorage.getItem('token')
+                }
+            })
             response.status == 201 ? this.success("Created campaign!") : this.error("Couldn't create campaign")
             setTimeout(() => {
                 this.$router.push("/")

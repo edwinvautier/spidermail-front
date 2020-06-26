@@ -6,6 +6,8 @@ import Admin from "../views/Admin.vue";
 import NewCampaign from "../views/NewCampaign.vue";
 import Campaign from "../views/Campaign.vue";
 import Registrate from "../views/Registrate.vue";
+import NewRecipientList from "../views/NewRecipientList.vue";
+import RecipientsLists from "../views/RecipientsLists.vue";
 
 Vue.use(VueRouter);
 
@@ -39,6 +41,16 @@ const routes = [
     path: "/campaigns/:id",
     name: "Campaign",
     component: Campaign
+  },
+  {
+    path: "/lists/new",
+    name: "NewList",
+    component: NewRecipientList
+  },
+  {
+    path: "/lists",
+    name: "Lists",
+    component: RecipientsLists
   }
 ];
 

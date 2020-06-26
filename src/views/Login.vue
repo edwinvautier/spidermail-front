@@ -2,7 +2,6 @@
   <div class="about">
     <h1 class="title">Login</h1>
     <LoginForm @submit="login"/>
-    <router-link to="/registrate">Not registered yet ?</router-link>
   </div>
 </template>
 
@@ -24,9 +23,11 @@ export default {
       try {
         const response = await axios.post("http://localhost:8080/login", user)
         response.status == 200 ? this.success("Logged in!") : this.error("Please verify your credentials.")
+        localStorage.setItem("token", response.headers.authorization)
+
         setTimeout(() => {
           this.$router.push("/")
-        }, 1000);
+        }, 500);
       } catch (err) {
         console.error(err)
         this.error("Please verify your credentials.")
