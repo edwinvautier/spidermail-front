@@ -1,5 +1,5 @@
 <template>
-    <div class="userform">
+    <div>
         <b-field label="Name">
             <b-input
                 v-model="name"
@@ -15,12 +15,8 @@
                 maxlength="30">
             </b-input>
         </b-field>
-        <b-field label="Admin">
-            <b-checkbox v-model="admin">
-            </b-checkbox>
-        </b-field>
         <b-field>
-            <b-button type="is-info">Add user</b-button>
+            <b-button :disabled="isInvalidMail" @click="newRecipient" type="is-info">Add recipient</b-button>
         </b-field>
     </div>
 </template>
@@ -32,21 +28,18 @@ export default {
             isInvalidMail: false,
             name: "",
             email: "",
-            admin: false,
         }
     },
     methods: {
         validateMail: function() {
             let isValid = /([A-z.]*@[A-z]*\.[a-z]*)\w/.test(this.email)
             isValid ? this.isInvalidMail = false : this.isInvalidMail = true
+        },
+        newRecipient: function() {
+            this.$emit("submit", {Name: this.name, Email: this.email})
+            this.name = ""
+            this.email = ""
         }
     }
 }
 </script>
-
-<style lang="scss" scoped>
-.userform {
-    margin: 50px;
-
-}
-</style>

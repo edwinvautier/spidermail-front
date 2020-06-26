@@ -2,6 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Campaigns</router-link> |
+      <router-link to="/lists">Lists</router-link> |
       <router-link to="/admin">Admin</router-link> |
       <router-link to="/login">Login</router-link>
     </div>

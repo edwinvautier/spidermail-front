@@ -27,7 +27,11 @@ export default {
     methods: {
         updateUser: async function(user) {
             try {
-                const response = await axios.put("http://localhost:8080/users/"+user.ID, {...user})
+                const response = await axios.put("http://localhost:8080/users/"+user.ID, {...user},{
+                    headers: {
+                        "Authorization": localStorage.getItem('token')
+                    }
+                })
                 response.status == 200 ? this.success("Changes saved!") : this.error()
             } catch (err) {
                 console.error(err)
@@ -37,7 +41,11 @@ export default {
         deleteUser: async function(id) {
             this.isComponentModalActive = false
             try {
-                const response = await axios.delete("http://localhost:8080/users/"+id)
+                const response = await axios.delete("http://localhost:8080/users/"+id,{
+                    headers: {
+                        "Authorization": localStorage.getItem('token')
+                    }
+                })
                 response.status == 200 ? this.success("User deleted!") : this.error("Couldn't delete")
 
                 setTimeout(() => {

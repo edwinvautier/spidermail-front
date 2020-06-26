@@ -24,7 +24,7 @@
                 <option v-for="(list, index) in recipientsLists" :key="index"  :value="list.id">{{ list.name }}</option>
             </b-select>
         </b-field>
-        <b-field label="Sending date">
+        <!-- <b-field label="Sending date">
             <b-datetimepicker
                 rounded
                 placeholder="Click to select..."
@@ -33,7 +33,7 @@
                 :timepicker="{ enableSeconds, hourFormat: format }"
                 horizontal-time-picker>
             </b-datetimepicker>
-        </b-field>
+        </b-field> -->
         <div class="buttons">
         <b-button @click="editCampaign" type="is-info">Save changes</b-button>
         <b-button @click="isComponentModalActive = true" type="is-danger">Delete</b-button>
@@ -89,7 +89,11 @@ export default {
     methods: {
         editCampaign: async function() {
             try {
-                const response = await axios.put("http://localhost:8080/campaigns/"+this.id, {...this.campaign})
+                const response = await axios.put("http://localhost:8080/campaigns/"+this.id, {...this.campaign}, {
+                    headers: {
+                        "Authorization": localStorage.getItem('token')
+                    }
+                })
                 response.status == 200 ? this.success("Changes saved!") : this.error()
             } catch (err) {
                 console.error(err)
@@ -99,12 +103,16 @@ export default {
         deleteCampaign: async function() {
             this.isComponentModalActive = false
             try {
-                const response = await axios.delete("http://localhost:8080/campaigns/"+this.id)
+                const response = await axios.delete("http://localhost:8080/campaigns/"+this.id,{
+                    headers: {
+                        "Authorization": localStorage.getItem('token')
+                    }
+                })
                 response.status == 200 ? this.success("Campaign deleted!") : this.error()
 
                 setTimeout(() => {
                     this.$router.push("/")
-                }, 1000);
+                }, 500);
             } catch (err) {
                 console.error(err)
                 this.error("Couldn't delete.")
@@ -125,7 +133,11 @@ export default {
         }
     },
     async mounted() {
-        const response = await axios.get("http://localhost:8080/campaigns/"+this.id)
+        const response = await axios.get("http://localhost:8080/campaigns/"+this.id,{
+            headers: {
+                "Authorization": localStorage.getItem('token')
+            }
+        })
         this.campaign = response.data
     }
 }

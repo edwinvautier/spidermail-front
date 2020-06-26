@@ -23,8 +23,11 @@ export default {
     }
   },
   async mounted() {
-    
-    const response = await axios.get('http://localhost:8080/campaigns')
+    const response = await axios.get('http://localhost:8080/campaigns',{
+      headers: {
+          "Authorization": localStorage.getItem('token')
+      }
+    })
 
     this.campaigns = response.data
   },
