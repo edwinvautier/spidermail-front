@@ -20,8 +20,8 @@
             </b-input>
         </b-field>
         <b-field label="Recipients List">
-            <b-select v-model="campaign.recipientListId" placeholder="Select a list">
-                <option v-for="(list, index) in recipientsLists" :key="index"  :value="list.id">{{ list.name }}</option>
+            <b-select v-model="campaign.RecipientsListId" placeholder="Select a list">
+                <option v-for="(list, index) in recipientsLists" :key="index"  :value="list.ID">{{ list.Name }}</option>
             </b-select>
         </b-field>
         <!-- <b-field label="Sending date">
@@ -69,6 +69,7 @@ export default {
             id: this.$route.params.id,
             isComponentModalActive: false,
             campaign: {
+                RecipientsListId: 0
             },
             recipientsLists: [
                 {
@@ -133,12 +134,20 @@ export default {
         }
     },
     async mounted() {
-        const response = await axios.get("http://localhost:8081/campaigns/"+this.id,{
+        const campaignResponse = await axios.get("http://localhost:8081/campaigns/"+this.id,{
             headers: {
                 "Authorization": localStorage.getItem('token')
             }
         })
-        this.campaign = response.data
+        this.campaign = campaignResponse.data
+        const groupsResponse = await axios.get("http://localhost:8081/organisms/" + localStorage.getItem("organismId") + "/groups", 
+        {
+            headers: {
+                "Authorization": localStorage.getItem('token')
+            }
+        })
+
+        this.recipientsLists = groupsResponse.data
     }
 }
 </script>
