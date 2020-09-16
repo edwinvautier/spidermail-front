@@ -3,7 +3,7 @@
         <h1 class="title">New recipients list</h1>
         <b-field label="Name">
             <b-input
-                v-model="recipientList.recipientsList.Name"
+                v-model="recipientList.name"
                 maxlength="30">
             </b-input>
         </b-field>
@@ -16,7 +16,7 @@
         <AddRecipientForm @submit="newRecipient" />
         <br/>
         <b-field>
-            <b-button :disabled="recipientList.recipientsList.Name == '' || recipientList.recipients == []" @click="submit" type="is-info">Create recipient list</b-button>
+            <b-button :disabled="recipientList.name == '' || recipientList.recipients == []" @click="submit" type="is-info">Create recipient list</b-button>
         </b-field>
     </div>
 </template>
@@ -28,7 +28,7 @@ export default {
     data() {
         return {
             recipientList: {
-                recipientsList: {Name: ""},
+                name: "",
                 recipients: [],
                 organismId: Number(localStorage.getItem("organismId"))
             }

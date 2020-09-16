@@ -2,7 +2,15 @@
     <div class="userform">
         <b-field label="Name">
             <b-input
+                autofocus
                 v-model="name"
+                maxlength="30">
+            </b-input>
+        </b-field>
+        <b-field label="Password">
+            <b-input
+                v-model="password"
+                type="password"
                 maxlength="30">
             </b-input>
         </b-field>
@@ -34,7 +42,7 @@ export default {
             isInvalidMail: false,
             name: "",
             email: "",
-            password: "test",
+            password: "",
             admin: false,
             organismId: Number(localStorage.getItem("organismId"))
         }

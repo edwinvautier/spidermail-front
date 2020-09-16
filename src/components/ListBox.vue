@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="'/lists/' + list.ID" class="box">
+    <router-link to="/lists" class="box">
     <article class="media">
         <div class="media-content">
         <div class="content">

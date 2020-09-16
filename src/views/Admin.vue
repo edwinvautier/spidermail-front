@@ -12,6 +12,7 @@
 import axios from "axios"
 import UserTable from "@/components/UserTable";
 import AddUserForm from "@/components/AddUserForm";
+import jwt_decode from "jwt-decode";
 
 export default {
     data() {
@@ -24,6 +25,9 @@ export default {
         AddUserForm
     },
     async mounted() {
+        const decodedToken = jwt_decode(localStorage.getItem("token"))
+        if(!decodedToken.admin)
+            this.$router.back()
         const response = await axios.get("http://localhost:8081/organisms/" + localStorage.getItem("organismId") + "/users",{
             headers: {
                 "Authorization": localStorage.getItem('token')
