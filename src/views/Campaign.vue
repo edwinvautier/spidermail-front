@@ -89,7 +89,7 @@ export default {
     methods: {
         editCampaign: async function() {
             try {
-                const response = await axios.put("http://localhost:8080/campaigns/"+this.id, {...this.campaign}, {
+                const response = await axios.put("http://localhost:8081/campaigns/"+this.id, {...this.campaign}, {
                     headers: {
                         "Authorization": localStorage.getItem('token')
                     }
@@ -103,7 +103,7 @@ export default {
         deleteCampaign: async function() {
             this.isComponentModalActive = false
             try {
-                const response = await axios.delete("http://localhost:8080/campaigns/"+this.id,{
+                const response = await axios.delete("http://localhost:8081/campaigns/"+this.id,{
                     headers: {
                         "Authorization": localStorage.getItem('token')
                     }
@@ -133,7 +133,7 @@ export default {
         }
     },
     async mounted() {
-        const response = await axios.get("http://localhost:8080/campaigns/"+this.id,{
+        const response = await axios.get("http://localhost:8081/campaigns/"+this.id,{
             headers: {
                 "Authorization": localStorage.getItem('token')
             }

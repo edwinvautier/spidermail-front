@@ -15,7 +15,7 @@ export default {
     methods: {
         createCampaign: async function(campaign) {
         try {
-            const response = await axios.post("http://localhost:8080/campaigns", campaign,{
+            const response = await axios.post("http://localhost:8081/campaigns", campaign,{
                 headers: {
                     "Authorization": localStorage.getItem('token')
                 }

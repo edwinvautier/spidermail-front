@@ -21,10 +21,12 @@ export default {
   methods: {
     login: async function(user) {
       try {
-        const response = await axios.post("http://localhost:8080/login", user)
+        const response = await axios.post("http://localhost:8081/login", user)
         response.status == 200 ? this.success("Logged in!") : this.error("Please verify your credentials.")
-        localStorage.setItem("token", response.headers.authorization)
 
+        localStorage.setItem("token", response.headers.authorization)
+        localStorage.setItem("userId", response.data.ID)
+        localStorage.setItem("organismId", response.data.OrganismId)
         setTimeout(() => {
           this.$router.push("/")
         }, 500);

@@ -20,25 +20,56 @@
             </b-checkbox>
         </b-field>
         <b-field>
-            <b-button type="is-info">Add user</b-button>
+            <b-button :disabled="isInvalidMail" @click="submitUser" type="is-info">Add user</b-button>
         </b-field>
     </div>
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
     data() {
         return {
             isInvalidMail: false,
             name: "",
             email: "",
+            password: "test",
             admin: false,
+            organismId: Number(localStorage.getItem("organismId"))
         }
     },
     methods: {
         validateMail: function() {
             let isValid = /([A-z.]*@[A-z]*\.[a-z]*)\w/.test(this.email)
             isValid ? this.isInvalidMail = false : this.isInvalidMail = true
+        },
+        submitUser: async function() {
+            const response = await axios.post("http://localhost:8081/registration",
+            {
+                name: this.name,
+                email: this.email,
+                password: this.password,
+                organismId: this.organismId,
+                admin: this.admin
+            })
+            
+            response.status == 201 ? this.success("Created user!") : this.error("Couldn't create user")
+
+            window.location.reload()
+        },
+        success(message) {
+        this.$buefy.toast.open({
+            message: message,
+            type: 'is-success'
+        })
+        },
+        error(err) {
+            const message = err != undefined ? err : 'Unable to make changes.'
+            this.$buefy.toast.open({
+                message: message,
+                type: 'is-danger'
+            })
         }
     }
 }

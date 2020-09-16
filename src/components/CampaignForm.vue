@@ -46,6 +46,7 @@ export default {
                 subject: "",
                 content: "",
                 recipientListId: 0,
+                organismId: Number(localStorage.getItem("organismId"))
             },
             recipientsLists: [
                 {
