@@ -24,7 +24,7 @@ export default {
         AddUserForm
     },
     async mounted() {
-        const response = await axios.get("http://localhost:8080/organisms/10/users",{
+        const response = await axios.get("http://localhost:8081/organisms/" + localStorage.getItem("organismId") + "/users",{
             headers: {
                 "Authorization": localStorage.getItem('token')
             }

@@ -23,7 +23,7 @@ export default {
     }
   },
   async mounted() {
-    const response = await axios.get('http://localhost:8080/groups',{
+    const response = await axios.get('http://localhost:8081/groups',{
       headers: {
           "Authorization": localStorage.getItem('token')
       }

@@ -27,7 +27,7 @@ export default {
     methods: {
         updateUser: async function(user) {
             try {
-                const response = await axios.put("http://localhost:8080/users/"+user.ID, {...user},{
+                const response = await axios.put("http://localhost:8081/users/"+user.ID, {...user},{
                     headers: {
                         "Authorization": localStorage.getItem('token')
                     }
@@ -41,7 +41,7 @@ export default {
         deleteUser: async function(id) {
             this.isComponentModalActive = false
             try {
-                const response = await axios.delete("http://localhost:8080/users/"+id,{
+                const response = await axios.delete("http://localhost:8081/users/"+id,{
                     headers: {
                         "Authorization": localStorage.getItem('token')
                     }

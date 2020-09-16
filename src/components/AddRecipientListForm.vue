@@ -29,7 +29,8 @@ export default {
         return {
             recipientList: {
                 recipientsList: {Name: ""},
-                recipients: []
+                recipients: [],
+                organismId: Number(localStorage.getItem("organismId"))
             }
         }
     },

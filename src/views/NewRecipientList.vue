@@ -12,7 +12,7 @@ export default {
     methods: {
         createList: async function(list) {
             try {
-                const response = await axios.post("http://localhost:8080/groups", list,{
+                const response = await axios.post("http://localhost:8081/groups", list,{
                     headers: {
                         "Authorization": localStorage.getItem('token')
                     }
