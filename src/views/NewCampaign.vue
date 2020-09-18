@@ -42,6 +42,10 @@ export default {
                 type: 'is-danger'
             })
         }
+    },
+    mounted() {
+        if(localStorage.getItem("token") == null)
+            this.$router.push("login")
     }
 }
 </script>

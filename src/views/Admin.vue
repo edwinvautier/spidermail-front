@@ -25,6 +25,8 @@ export default {
         AddUserForm
     },
     async mounted() {
+        if(localStorage.getItem("token") == null)
+            this.$router.push("login")
         const decodedToken = jwt_decode(localStorage.getItem("token"))
         if(!decodedToken.admin)
             this.$router.back()

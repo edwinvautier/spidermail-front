@@ -134,6 +134,8 @@ export default {
         }
     },
     async mounted() {
+        if(localStorage.getItem("token") == null)
+            this.$router.push("login")
         const campaignResponse = await axios.get("http://localhost:8081/campaigns/"+this.id,{
             headers: {
                 "Authorization": localStorage.getItem('token')
